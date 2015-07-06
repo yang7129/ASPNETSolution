@@ -1,6 +1,12 @@
-﻿
+﻿@model MVC.Models.DefaultModel
 @{
     Layout = null;
+    List<MVC.Models.DefaultModel.Menu> ListMenu = new List<MVC.Models.DefaultModel.Menu>();
+    ListMenu = null;
+    if (ViewBag.ListMenu != null)
+    {
+       ListMenu= (List<MVC.Models.DefaultModel.Menu>)ViewBag.ListMenu;
+    } 
 }
 
 <!DOCTYPE html>
@@ -9,10 +15,53 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <div> 
-        HI 我是練習可以嗎
+        HI 我是練習
+        <table>
+            <thead>
+                <tr>
+                    @for (int i = 0; i < (ListMenu.Count < 4 ? ListMenu.Count : 4); i++)
+                    {
+                        <td>功能</td>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ListMenu.Count; i++)
+                {
+                    <tr>
+                        @for (int j = i; j < i + 4; j++)
+                        {
+                            if (j < ListMenu.Count)
+                            {
+                                <td><a href="@Url.Action(ListMenu[j].MenuAction, ListMenu[j].MenuController)">@ListMenu[j].MenuName</a> </td>
+                                i = j;
+                                if (i !=0 && j !=0 && (j%4 == 3) )
+                                {
+                                    break;
+                                }
+                            }
+
+                        }
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
     </div>
 </body>
 </html>
