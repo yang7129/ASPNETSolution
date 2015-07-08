@@ -17,11 +17,7 @@ namespace MVC.Controllers
             ListMenu = new List<DefaultModel.Menu>(); //建立物件
             //下列為列表
             MenuToList("首頁", "Default", "Index");
-
-            int A = 0;
-            int B = 10;
-            int C = B / A;
-
+            MenuToList("練習Get和Post", "GetAndPost", "Index"); 
             //給前端使用
             ViewBag.ListMenu = ListMenu;
             return View();

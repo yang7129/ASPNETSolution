@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("", "GetAndPost", FormMethod.Post, new { name = "myform" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <input type="text" name="InUrl" />
+            <button type="submit" >送出</button>
+            <br />
+            @Html.Raw(ViewBag.Msg) 
+        }
+    </div>
+</body>
+</html>
